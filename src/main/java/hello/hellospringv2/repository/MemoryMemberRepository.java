@@ -1,9 +1,11 @@
 package hello.hellospringv2.repository;
 
 import hello.hellospringv2.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
     // 실무에서는 동시성을 고려하여 개발한다.
