@@ -20,12 +20,11 @@ class MemberServiceIntegrationTest {
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
 
-
     @Test
     void 회원가입() {
         //given
         Member member = new Member();
-        member.setName("2spring");
+        member.setName("3spring");
 
         //when
         Long saveId = memberService.join(member);
