@@ -23,11 +23,19 @@ public class MemberService {
     // 회원 가입
     // rule : 동명이인 중복 불가 -> method 르 뽑음
     public Long join(Member member) {
-        validateDuplicateMember(member);
 
-        memberRepository.save(member);
+        long start = System.currentTimeMillis();
 
-        return member.getId();
+        try {
+            validateDuplicateMember(member);
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("join = " + timeMs + "ms");
+
+        }
     }
 
     private void validateDuplicateMember(Member member) {
@@ -39,7 +47,16 @@ public class MemberService {
 
     // 전체 멤버 조회
     public List<Member> findMembers() {
-        return memberRepository.findAll();
+
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findMembers = " + timeMs + "ms");
+        }
+
     }
 
     public Optional<Member> findOne(Long memberId) {
